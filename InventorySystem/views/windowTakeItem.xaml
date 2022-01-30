@@ -1,0 +1,74 @@
+﻿<Window x:Class="InventorySystem.views.windowTakeItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventorySystem.views"
+        mc:Ignorable="d"
+        Title="Inventāra Paņemšana" Height="550" Width="1200" MinHeight="550" MinWidth="1200">
+    <Grid Background="#FF2A484D">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="57*"/>
+            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="55*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="259*"/>
+            <RowDefinition Height="225*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="inputCode" TextWrapping="Wrap" Margin="28,113,28,0" FontSize="36" Height="59" VerticalAlignment="Top" TextChanged="inputCode_TextChanged" Grid.Column="1" IsEnabled="False"/>
+        <TextBlock x:Name="textInfoLarge" TextWrapping="Wrap" Margin="24,65,24,7" FontSize="36" Foreground="Black" Background="#FFB2B2B2" Grid.Column="2"/>
+        <TextBlock TextWrapping="Wrap" Margin="26,20,36,0" FontSize="24" FontWeight="Bold" Foreground="#FFFFDF72" Height="40" VerticalAlignment="Top"><Run Text="1. Izvēlēties Objektu"/><Run Language="en-gb" Text=":"/></TextBlock>
+        <TextBlock x:Name="textStatus" Margin="42,0,42,19" TextWrapping="Wrap" Grid.Column="1" FontSize="24" Foreground="#FF00FF02" FontWeight="Bold" TextAlignment="Center" Text="" Height="73" VerticalAlignment="Bottom"/>
+        <DataGrid x:Name="MainData" Margin="26,65,36,7" FontSize="13" Foreground="Black" SelectionChanged="MainData_SelectionChanged" AutoGenerateColumns="False"
+                  EnableRowVirtualization="True" RowDetailsVisibilityMode="VisibleWhenSelected" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding WorkingObjectId}"
+                            Header="Id" Width="Auto"
+                            IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Name}"
+                            Header="Nosaukums" Width="*"
+                            IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock TextWrapping="Wrap" Margin="28,20,27,0" FontSize="24" FontWeight="Bold" Foreground="#FFFFDF72" Height="40" VerticalAlignment="Top" Grid.Column="1"><Run Text="2"/><Run Text=". Skenēt Svītrkodu"/><Run Text=":"/></TextBlock>
+        <DataGrid x:Name="MainDataInventory" Margin="26,48,36,10" FontSize="13" Foreground="Black" Grid.Row="1"
+                  EnableRowVirtualization="True" AutoGenerateColumns="False" CanUserAddRows="False">
+            <!--ItemsSource="{Binding Source={StaticResource categoryViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected">-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding InventoryId}"
+                            Header="Svītrkods" Width="Auto"
+                            IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Nosaukums" 
+                            Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Model}" Header="Modelis" 
+                            Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Ražotājs" 
+                            Width="Auto" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock TextWrapping="Wrap" Margin="25,20,24,0" FontSize="24" FontWeight="Bold" Foreground="#FFFFDF72" Height="40" VerticalAlignment="Top" Grid.Column="2"><Run Text="3"/><Run Text=". "/><Run Text="Skatīt"/><Run Language="en-gb" Text=" Informāciju"/><Run Text=":"/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="26,8,36,0" FontSize="24" FontWeight="Bold" Foreground="#FF72F9FF" Height="35" VerticalAlignment="Top" Grid.Row="1"><Run Language="en-gb" Text="Inventārs uz vietas:"/></TextBlock>
+        <DataGrid x:Name="MainDataUsages" Margin="28,48,24,10" FontSize="13" Foreground="Black" Grid.Row="1"
+             IsReadOnly="True" VerticalScrollBarVisibility="Auto" EnableRowVirtualization="True" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Column="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding InventoryId}"
+                            Header="Svītrkods" Width="SizeToHeader"
+                            IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Manufacturer}" Header="Ražotājs" 
+                            Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding Model}" Header="Modelis" 
+                            Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Nosaukums" 
+                            Width="*"/>
+                <DataGridTextColumn Binding="{Binding Taken}" Header="Paņemts" 
+                            Width="Auto"/>
+                <DataGridTextColumn Binding="{Binding Employee}" Header="Darbinieks" 
+                            Width="Auto"/>
+                <DataGridTextColumn x:Name="Status" Binding="{Binding WorkingObject}" Header="Objekts"
+                            Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock TextWrapping="Wrap" Margin="28,8,10,0" FontSize="24" FontWeight="Bold" Foreground="#FF72F9FF" Height="35" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"><Run Text="Inventārs "/><Run Language="en-gb" Text="pie darbiniekiem"/><Run Text=":"/></TextBlock>
+    </Grid>
+</Window>
