@@ -105,7 +105,10 @@ namespace InventorySystem.views
         {
             Notifications notifications = new Notifications();
             DamageReport damageReport = new DamageReport(Inventory, inputReport.Text);
-            Context.DamageReports.Add(damageReport);
+            if (Context.DamageReports.Count() == 1)
+                Context.DamageReports.Update(damageReport);
+            else
+                Context.DamageReports.Add(damageReport);
             Context.SaveChanges(); ////////////////////////// Otreizējam bojājumam kļūda.
             Emailing emailing = new Emailing();
             string emailmessage = $"Bojāts Inventārs Nr: {Inventory.InventoryId}\n\n";
