@@ -23,6 +23,11 @@ namespace InventorySystemCore
         {
             Status = status.Aktīvs;
         }
+        public Inventory(int presetId)
+        {
+            InventoryId = presetId;
+            Status = status.Aktīvs;
+        }
         public virtual DamageReport DamageReport { get; set; }
         public virtual ICollection<InventoryUsage>
             InventoryUsages

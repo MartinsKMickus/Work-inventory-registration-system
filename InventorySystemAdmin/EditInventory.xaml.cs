@@ -28,10 +28,16 @@ namespace InventorySystemAdmin
             Inventory = inventory;
             if (Inventory != null)
             {
+                inputID.Text = Inventory.InventoryId.ToString();
+                inputID.IsEnabled = false;
                 inputManufacturer.Text = Inventory.Manufacturer;
                 inputModel.Text = Inventory.Model;
                 inputDescription.Text = Inventory.Name;
                 inputStatus.SelectedItem = Inventory.Status;
+            }
+            else
+            {
+                inputStatus.IsEnabled = false;
             }
         }
 
@@ -71,12 +77,24 @@ namespace InventorySystemAdmin
 
             if (Inventory == null)
             {
-                Inventory = new Inventory()
+                if (inputID.Text == "")
                 {
-                    Manufacturer = inputManufacturer.Text,
-                    Model = inputModel.Text,
-                    Name = inputDescription.Text
-                };
+                    Inventory = new Inventory()
+                    {
+                        Manufacturer = inputManufacturer.Text,
+                        Model = inputModel.Text,
+                        Name = inputDescription.Text
+                    };
+                }
+                else
+                {
+                    Inventory = new Inventory(int.Parse(inputID.Text))
+                    {
+                        Manufacturer = inputManufacturer.Text,
+                        Model = inputModel.Text,
+                        Name = inputDescription.Text
+                    };
+                }
                 notifications.I8();
             }
             else

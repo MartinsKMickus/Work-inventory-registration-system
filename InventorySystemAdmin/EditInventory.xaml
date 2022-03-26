@@ -5,25 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventorySystemAdmin"
         mc:Ignorable="d"
-        Title="Inventāra Pievienošana" Height="450" Width="800" MinHeight="450" MinWidth="950">
-    <Grid Background="#FF2A484D">
+        Title="Inventāra Pievienošana" Height="534" Width="950" MinHeight="500" MinWidth="950">
+    <Grid Background="#FF2A484D" Margin="0,0,0,-2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="47*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="339*"/>
             <RowDefinition Height="95*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Button x:Name="ButtonSave" Content="Saglabāt" Margin="636,0,54,15" FontSize="24" Height="65" VerticalAlignment="Bottom" Background="#FF83BC00" FontWeight="Bold" Grid.Row="1" Click="ButtonSave_Click"/>
-        <Button x:Name="ButtonCancel" Content="Atcelt" Margin="28,0,661,0" FontSize="24" Height="65" VerticalAlignment="Center" Background="#FFBB3A34" FontWeight="Bold" Grid.Row="1" Click="ButtonCancel_Click"/>
-        <TextBox x:Name="inputManufacturer" HorizontalAlignment="Left" Height="45" Margin="395,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482" FontSize="24" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Height="45" Margin="58,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inventāra"/><Run Text=" "/><Run Language="en-gb" Text="Ražotājs"/><Run Text=":"/></TextBlock>
-        <TextBox x:Name="inputModel" HorizontalAlignment="Left" Height="45" Margin="395,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482" FontSize="24" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Height="45" Margin="58,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inventāra"/><Run Text=" "/><Run Language="en-gb" Text="Modelis"/><Run Text=":"/></TextBlock>
-        <TextBox x:Name="inputDescription" HorizontalAlignment="Left" Height="45" Margin="395,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="482" FontSize="24" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Height="45" Margin="58,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inve"/><Run Text="ntāra "/><Run Language="en-gb" Text="Nosaukums"/><Run Text=":"/></TextBlock>
-        <ComboBox x:Name="inputStatus" HorizontalAlignment="Left" Height="50" Margin="395,266,0,0" VerticalAlignment="Top" Width="241" FontSize="24" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Height="44" Margin="58,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inve"/><Run Text="ntāra "/><Run Language="en-gb" Text="Status"/><Run Text=":"/></TextBlock>
+        <Button x:Name="ButtonSave" Content="Saglabāt" Margin="160,0,50,24" FontSize="24" Height="65" VerticalAlignment="Bottom" Background="#FF83BC00" FontWeight="Bold" Grid.Row="1" Click="ButtonSave_Click" Grid.Column="1"/>
+        <Button x:Name="ButtonCancel" Content="Atcelt" Margin="25,0,194,24" FontSize="24" Height="65" VerticalAlignment="Bottom" Background="#FFBB3A34" FontWeight="Bold" Grid.Row="1" Click="ButtonCancel_Click"/>
+        <TextBox x:Name="inputManufacturer" Height="45" Margin="35,54,73,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock Height="45" Margin="58,54,105,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inventāra"/><Run Text=" "/><Run Language="en-gb" Text="Ražotājs"/><Run Text=":"/></TextBlock>
+        <TextBox x:Name="inputModel" Height="45" Margin="35,125,73,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock Height="45" Margin="58,125,105,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inventāra"/><Run Text=" "/><Run Language="en-gb" Text="Modelis"/><Run Text=":"/></TextBlock>
+        <TextBox x:Name="inputDescription" Height="45" Margin="35,195,73,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock Height="45" Margin="58,195,105,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inve"/><Run Text="ntāra "/><Run Language="en-gb" Text="Nosaukums"/><Run Text=":"/></TextBlock>
+        <ComboBox x:Name="inputStatus" Height="50" Margin="156,263,73,0" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock Height="44" Margin="58,269,105,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inve"/><Run Text="ntāra "/><Run Language="en-gb" Text="Status"/><Run Text=":"/></TextBlock>
+        <TextBlock Height="46" Margin="58,340,20,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Foreground="#FF9AE4FF"><Run Text="Inve"/><Run Text="ntāra "/><Run Text="ID"/><Run Text=" (tukšs ģenerē auto)"/><Run Language="lv-lv" Text=":"/></TextBlock>
+        <TextBox x:Name="inputID" Height="46" Margin="35,340,73,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
 
     </Grid>
 </Window>

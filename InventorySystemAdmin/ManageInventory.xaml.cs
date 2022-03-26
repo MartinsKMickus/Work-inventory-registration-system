@@ -71,10 +71,6 @@ namespace InventorySystemAdmin
                         break;
                     }
             }
-            
-            //listInventories.Items.Refresh();
-            //listInventories.ItemsSource = Context.Inventories.ToList();
-            //listInventories.Items.Refresh();
         }
         private void listInventories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
