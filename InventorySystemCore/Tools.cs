@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
@@ -58,21 +59,43 @@ namespace InventorySystemCore
         /// </summary>
         /// <param name="barcodes">String array of barcodes to generate.</param>
         /// <param name="print">Option to print barcodes to default printer.</param>
-        public void GenerateBarcodes(string[] barcodes, bool print = false)
+        public void GenerateBarcodes(string[,] barcodes, bool print = false)
         {
             Directory.CreateDirectory("C:/ProgramData/InventorySystem/Barcodes"); // If there is no data/configuration path.
             Directory.Delete("C:/ProgramData/InventorySystem/Barcodes", true);
             Directory.CreateDirectory("C:/ProgramData/InventorySystem/Barcodes");
             List<Image> images = new List<Image>();
-            for (int i = 0; i<barcodes.Length; i++)
+            for (int i = 0; i<barcodes.Length/2; i++)
             {
                 BarcodeLib.Barcode b = new BarcodeLib.Barcode();
                 b.IncludeLabel = true;
                 Font font = new Font("Arial", 16, System.Drawing.FontStyle.Bold);
                 b.LabelFont = font;
-                Image image = b.Encode(BarcodeLib.TYPE.CODE39, barcodes[i], Color.Black, Color.White, 290, 120);
+                b.AlternateLabel = barcodes[i,1];
+                Image image = b.Encode(BarcodeLib.TYPE.CODE39, barcodes[i,0], Color.Black, Color.White, 290, 120);
+                using (Graphics g = Graphics.FromImage(image))
+                {
+                    g.DrawImage(image, (int)0, (int)0);
+#if ! PocketPC
+                    g.SmoothingMode = SmoothingMode.HighQuality;
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    g.CompositingQuality = CompositingQuality.HighQuality;
+#endif
+                    int fSize = (int)(font.Size * 1.5); //we do not have Font.Height in CF
+                    //color a white box at the bottom of the barcode to hold the string of data
+                    g.FillRectangle(new SolidBrush(Color.White), new Rectangle(0, image.Height - ((int)fSize)*2, image.Width, fSize));
+
+                    //draw datastring under the barcode image
+                    StringFormat f = new StringFormat();
+                    f.Alignment = StringAlignment.Center;
+                    g.DrawString(barcodes[i,0], font, new SolidBrush(Color.Black), (float)(image.Width / 2), image.Height - fSize*2 + 1 , f);
+#if ! PocketPC
+                    g.Save();
+#endif
+                }
                 images.Add(image);
-                image.Save("C:/ProgramData/InventorySystem/Barcodes/" + barcodes[i] + ".png");
+                image.Save("C:/ProgramData/InventorySystem/Barcodes/" + barcodes[i,0] + ".png");
             }
             if (print)
             {

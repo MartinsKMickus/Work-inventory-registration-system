@@ -141,7 +141,7 @@ namespace InventorySystemAdmin
         private void ButtonGenBarcodes_Click(object sender, RoutedEventArgs e)
         {
             if (listInventories.SelectedItems.Count == 0) return;
-            string[] barcodes = new string[listInventories.SelectedItems.Count];
+            string[,] barcodes = new string[listInventories.SelectedItems.Count, 2];
             int i = 0;
             foreach(Inventory item in listInventories.SelectedItems)
             {
@@ -149,34 +149,34 @@ namespace InventorySystemAdmin
                 {
                     if (item.InventoryId < 10)
                     {
-                        barcodes[i++] = "00000" + item.InventoryId.ToString();
+                        barcodes[i++, 0] = "00000" + item.InventoryId.ToString();
                     }
                     else if (item.InventoryId < 100)
                     {
-                        barcodes[i++] = "0000" + item.InventoryId.ToString();
+                        barcodes[i++, 0] = "0000" + item.InventoryId.ToString();
                     }
                     else if (item.InventoryId < 1000)
                     {
-                        barcodes[i++] = "000" + item.InventoryId.ToString();
+                        barcodes[i++, 0] = "000" + item.InventoryId.ToString();
                     }
                     else if (item.InventoryId < 10000)
                     {
-                        barcodes[i++] = "00" + item.InventoryId.ToString();
+                        barcodes[i++, 0] = "00" + item.InventoryId.ToString();
                     }
                     else if (item.InventoryId < 100000)
                     {
-                        barcodes[i++] = "0" + item.InventoryId.ToString();
+                        barcodes[i++, 0] = "0" + item.InventoryId.ToString();
                     }
                     else
                     {
-                        barcodes[i++] = item.InventoryId.ToString();
+                        barcodes[i++, 0] = item.InventoryId.ToString();
                     }
                 }
                 catch (Exception)
                 {
-                    barcodes[i++] = item.InventoryId.ToString();
+                    barcodes[i++, 0] = item.InventoryId.ToString();
                 }
-                
+                barcodes[i - 1, 1] = item.Name;
             }
             Notifications notifications = new Notifications();
             notifications.I11();
