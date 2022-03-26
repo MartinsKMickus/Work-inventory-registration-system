@@ -50,7 +50,6 @@ namespace InventorySystemAdmin
                 case 1:
                     {
                         var UsageSelection = from inventory in Context.Inventories
-                                             //where inventory.Status != status.Norakstīts
                                              select inventory;
                         listInventories.ItemsSource = UsageSelection.ToList();
                         break;
@@ -59,6 +58,14 @@ namespace InventorySystemAdmin
                     {
                         var UsageSelection = from inventory in Context.Inventories
                                              where inventory.InventoryUsages.Any(a => a.Returned == null)
+                                             select inventory;
+                        listInventories.ItemsSource = UsageSelection.ToList();
+                        break;
+                    }
+                case 3:
+                    {
+                        var UsageSelection = from inventory in Context.Inventories
+                                             where inventory.InventoryUsages.All(a => a.Returned != null)
                                              select inventory;
                         listInventories.ItemsSource = UsageSelection.ToList();
                         break;
@@ -209,6 +216,7 @@ namespace InventorySystemAdmin
 
         private void CheckboxShowOnlyUnreturned_Checked(object sender, RoutedEventArgs e)
         {
+            CheckboxShowOnlyOnPlace.IsChecked = false;
             CheckboxShowDeleted.IsEnabled = false;
             CheckboxShowDeleted.IsChecked = true;
             ShowingType = 2;
@@ -220,6 +228,23 @@ namespace InventorySystemAdmin
             ShowingType = 0;
             CheckboxShowDeleted.IsEnabled = true;
             CheckboxShowDeleted.IsChecked = false;
+            RefreshInventorylist();
+        }
+
+        private void CheckboxShowOnlyOnPlace_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckboxShowDeleted.IsEnabled = true;
+            CheckboxShowDeleted.IsChecked = false;
+            ShowingType = 0;
+            RefreshInventorylist();
+        }
+
+        private void CheckboxShowOnlyOnPlace_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckboxShowOnlyUnreturned.IsChecked = false;
+            CheckboxShowDeleted.IsEnabled = false;
+            CheckboxShowDeleted.IsChecked = true;
+            ShowingType = 3;
             RefreshInventorylist();
         }
     }

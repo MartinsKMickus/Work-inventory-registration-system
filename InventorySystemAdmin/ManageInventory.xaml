@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventorySystemAdmin"
         mc:Ignorable="d"
-        Title="Inventāra Pārvaldnieks" Height="600" Width="1050" MinHeight="600" MinWidth="1050">
+        Title="Inventāra Pārvaldnieks" Height="639" Width="1050" MinHeight="600" MinWidth="1050">
     <!--<Window.Resources>
         <CollectionViewSource x:Key="categoryViewSource"/>
         <CollectionViewSource x:Key="categoryProductsViewSource" 
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="13*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="listInventories" Grid.Column="1" Margin="53,59,60,30" FontSize="24" SelectionChanged="listInventories_SelectionChanged"
+        <DataGrid x:Name="listInventories" Grid.Column="1" Margin="53,99,60,30" FontSize="24" SelectionChanged="listInventories_SelectionChanged"
             EnableRowVirtualization="True" AutoGenerateColumns="False" CanUserAddRows="False">
             <!--ItemsSource="{Binding Source={StaticResource categoryViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected">-->
             <DataGrid.Columns>
@@ -48,7 +48,12 @@
                 <ScaleTransform ScaleX="2" ScaleY="2"/>
             </CheckBox.LayoutTransform>
         </CheckBox>
-        <CheckBox x:Name="CheckboxShowOnlyUnreturned" Content="Rādīt Tikai Neatgrieztos" FontWeight="Bold" Foreground="White" FontSize="11" Checked="CheckboxShowOnlyUnreturned_Checked" Unchecked="CheckboxShowOnlyUnreturned_Unchecked" Height="17" VerticalAlignment="Top" Margin="0,15,-301,0" Grid.Column="1" HorizontalAlignment="Right" Width="328">
+        <CheckBox x:Name="CheckboxShowOnlyUnreturned" Content="Rādīt Tikai Paņemtos" FontWeight="Bold" Foreground="White" FontSize="11" Checked="CheckboxShowOnlyUnreturned_Checked" Unchecked="CheckboxShowOnlyUnreturned_Unchecked" Height="17" VerticalAlignment="Top" Margin="0,15,-301,0" Grid.Column="1" HorizontalAlignment="Right" Width="328">
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2"/>
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <CheckBox x:Name="CheckboxShowOnlyOnPlace" Content="Rādīt Tikai Uz Vietas Esošos" FontWeight="Bold" Foreground="White" FontSize="11" Checked="CheckboxShowOnlyOnPlace_Checked" Unchecked="CheckboxShowOnlyOnPlace_Unchecked" Height="17" VerticalAlignment="Top" Margin="52,49,0,0" Grid.Column="1" HorizontalAlignment="Left" Width="164">
             <CheckBox.LayoutTransform>
                 <ScaleTransform ScaleX="2" ScaleY="2"/>
             </CheckBox.LayoutTransform>
